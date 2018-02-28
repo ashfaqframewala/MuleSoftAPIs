@@ -1,0 +1,33 @@
+#%RAML 1.0 DataType
+type: object
+properties: 
+  studentid:
+    type: string
+    example: STU372983
+    description: |
+      Unique identifier for the student
+    required: true
+  studentFirstName:
+    type: string
+    example: John
+    description: |
+      First name of the student
+    required: true
+  studentLastName:
+    type: string
+    example: Smith
+    description: |
+       Last name of the student
+    required: true
+  studentMiddleName:
+    type: string
+    example: Sam
+    description: |
+       Middle name of the student
+    required: false
+  dateOfBirth:
+    type: date-only
+    example: 1970-10-02
+    description: |
+     Date of birth of the student
+    required: true

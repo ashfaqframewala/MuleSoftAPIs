@@ -1,0 +1,39 @@
+#%RAML 1.0
+title: sys-callista-student
+description: System API for managing Student records in Callista
+
+types:
+  studentsList:
+    type: array
+    items: !include exchange_modules/23e7c2f3-3045-47c6-95d0-84711c85159f/datatype-student/1.0.0/datatype-student.raml
+
+/students:
+  description: API resource for mananging Student records
+  get:
+    description: This method retrieves a list of students that match the search criterion
+    queryParameters: 
+      startDateEnrolment:
+        type: date-only
+        required: false
+        description: search based on enrolment date. use startDateEnrolment and endDateEnrolment to specify a range
+      endDateEnrolment:
+        type: date-only
+        required: false
+        description: search based on enrolment date. use startDateEnrolment and endDateEnrolment to specify a range
+      offset:
+        type: integer
+        required: false
+        default: 0
+        description: For pagination of records. offset is the start index of the student record
+      limit:
+        type: integer
+        required: false
+        default: 50
+        description: For pagination of records. limit is the number of records return in the result
+    responses: 
+      200:
+        body: 
+          application/json:
+            type: studentsList
+            example: !include examples/students-list.raml
+              
