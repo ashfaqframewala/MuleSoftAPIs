@@ -1,0 +1,61 @@
+#%RAML 1.0
+title: test-200-response-validation
+description: API that tests whether response from an API gets validated against resource type
+
+baseUri: http://ashfaqcorp.webapis.com/v1
+
+/customers:
+  description: API to deal with customers
+  get:
+    description: Retrieve a list of customers matching the search criteria
+    queryParameters: 
+      firstName:
+        description: search using first name of the customer
+        type: string
+        required: false
+        example: "John"
+    responses: 
+      200:
+        body: 
+          application/json:
+            type: array
+            items:
+                type: object
+                properties:
+                  customerId:
+                    type: string
+                    required: true
+                    description: Unique id for the customer
+                  firstName:
+                    type: string
+                    required: true
+                    description: First name of the customer
+                  lastName:
+                    type: string
+                    required: false
+                    description: Last name of the customer
+                  dateOfBirth:
+                    type: date-only
+                    required: true
+                    description: Customer's date of birth
+            example: |
+                [
+                  {
+                    "customerId" : "CID80302",
+                    "firstName" : "John",
+                    "lastName" : "Smith",
+                    "dateOfBirth" : "1976-10-01"
+                  },
+                  {
+                    "customerId" : "CID80312",
+                    "firstName" : "Steve",
+                    "lastName" : "Tim",
+                    "dateOfBirth" : "1977-09-22"
+                  },
+                  {
+                    "customerId" : "CID80315",
+                    "firstName" : "Maria",
+                    "lastName" : "Finn",
+                    "dateOfBirth" : "1969-05-30"
+                  }                  
+                ]
